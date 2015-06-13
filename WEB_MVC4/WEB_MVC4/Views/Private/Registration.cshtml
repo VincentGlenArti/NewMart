@@ -1,0 +1,81 @@
+﻿@model WEB_MVC4.Models.RegistrationPageView
+
+@{
+    ViewBag.Title = "Регистрация";
+}
+
+<link href="~/CSS/StyleLogin.css" rel="stylesheet" type="text/css" />
+
+<div class="login-container">
+    <table>
+        <tr>
+            <td>
+                @if(ViewBag.Valid == null)
+                {
+                    <h2>Зарегистрироваться на сайте</h2>
+                }
+                else
+                {
+                    <h2>@ViewBag.Valid</h2>
+                }
+
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+
+                    <label>@Html.LabelFor(model => model.Login)</label>
+                    <div>
+                        @Html.TextBoxFor(model => model.Login, new {@class = "inputfield" } )
+                        <button></button>
+                        @Html.ValidationMessageFor(model => model.Login)
+                    </div>
+
+                    <label>@Html.LabelFor(model => model.Password)</label>
+                    <div>
+                        @Html.TextBoxFor(model => model.Password, new { @class = "inputfield" })
+                        <button></button>
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                    
+                    <label>@Html.LabelFor(model => model.RepeatPassword)</label>
+                    <div>
+                        @Html.TextBoxFor(model => model.RepeatPassword, new { @class = "inputfield" })
+                        <button></button>
+                        @Html.ValidationMessageFor(model => model.RepeatPassword)
+                    </div>
+                    
+                    <label>@Html.LabelFor(model => model.Name)</label>
+                    <div>
+                       @Html.TextBoxFor(model => model.Name, new { @class = "inputfield" })
+                        <button></button>
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                    
+                    <label>@Html.LabelFor(model => model.LastName)</label>
+                    <div>
+                       @Html.TextBoxFor(model => model.LastName, new { @class = "inputfield" })
+                        <button></button>
+                        @Html.ValidationMessageFor(model => model.LastName)
+                    </div>
+                    
+                    <label>@Html.LabelFor(model => model.Email)</label>
+                    <div>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "inputfield" })
+                        <button></button>
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                    
+                    <label>@Html.LabelFor(model => model.PhoneNumber)</label>
+                    <div>
+                        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "inputfield" })
+                        <button></button>
+                    </div>
+
+                    <div>
+                        <button>Зарегистрировать</button>
+                    </div>
+                }
+            </td>
+        </tr>
+    </table>
+</div>

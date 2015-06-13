@@ -1,0 +1,42 @@
+﻿@model WEB_MVC4.Models.LoginPageView
+
+@{
+    ViewBag.Title = "Вход в личный кабинет";
+}
+
+<link href="~/CSS/StyleLogin.css" rel="stylesheet" type="text/css" />
+
+<div class="login-container">
+    <table>
+        <tr>
+            <td>
+                <h2>Вход в личный кабинет</h2>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+
+                    <label>@Html.LabelFor(model => model.Login)</label>
+                    <div>
+                        @Html.TextBoxFor(model => model.Login, new { @class = "inputfield" })
+                        <button></button>
+                        @Html.ValidationMessageFor(model => model.Login)
+                    </div>
+
+                    <label>@Html.LabelFor(model => model.Password)</label>
+                    <div>
+                        @Html.TextBoxFor(model => model.Password, new { @class = "inputfield" })
+                        <button></button>
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                    
+                    <p>Запомнить?@Html.CheckBox("Persistent")</p>
+
+                    <div>
+                        <button>Вход</button>
+                    </div>
+                }
+            </td>
+        </tr>
+    </table>
+</div>

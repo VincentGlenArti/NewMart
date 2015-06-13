@@ -1,0 +1,81 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@{
+    ViewBag.Title = "NewMart - Главная страница";
+}
+
+<script src="~/Script/Catalogue.js"></script>
+    @using (Html.BeginForm("ApplySearch", "Home", new { @class = "none" }))
+    {
+        <ul class="search">
+            @Html.Hidden("Page", (int)ViewBag.Page)
+            @Html.Hidden("Category", (int)ViewBag.Category)
+            @Html.Hidden("DiscountOnly", (bool)ViewBag.DiscountOnly)
+            <li class="search_item"><button type="submit" class="item_button_dark">Искать</button></li>
+            <li class="search_item">
+                @Html.TextBox("Search", (string)ViewBag.Search, new { @class = "placeholder_search", @placeholder = "Поиск" })
+            </li>
+            <li class="search_item"><button class="item_button_dark" type="button" onclick="javascript: PopUpShow_Mask(menupopup);">Категории</button></li>
+        </ul>
+    }
+    <form action="JavaScript:void(0)">
+        <button class="banner"></button>
+    </form>
+    <form action="javascript:PopUpShow_Mask(itempopup)">
+        <ul class="catalogue">
+            @{
+                foreach(var Entry in (List<WEB_MVC4.Models.Product>)ViewBag.Products)
+                {
+                    <li class="catalogue_item">
+                        <div class="catalogue_item_image"></div>
+                        <div class="catalogue_item_name">@Entry.Name</div>
+                        <div class="catalogue_item_price">$@Entry.Price</div>
+                        <div class="catalogue_item_descr">@Entry.Info</div>
+                        <button class="catalogue_item_button">Подробнее</button>
+                    </li>
+                }
+            }
+        </ul>
+    </form>
+    <ul class="catalogue_controlls">
+    @if ((int)ViewBag.Page > 1)
+    {
+        using (Html.BeginForm("PreviousPage", "Home"))
+        {
+            @Html.Hidden("Page", (int)ViewBag.Page)
+            @Html.Hidden("Category", (int)ViewBag.Category)
+            @Html.Hidden("Search", (string)ViewBag.Search)
+            @Html.Hidden("DiscountOnly", (bool)ViewBag.DiscountOnly)
+            <li class="catalogue_controlls_item"><button type="submit" class="catalogue_prev_button">Назад</button></li>
+        }
+    }
+    else
+    {
+        <li class="catalogue_controlls_item"><button class="catalogue_prev_button">Назад</button></li>
+    }
+    <li class="catalogue_controlls_item"><div class="catalogue_page_info">Стр @ViewBag.Page/@ViewBag.TotalPages</div></li>
+    @using (Html.BeginForm("ApplyDiscount", "Home"))
+    {
+        @Html.Hidden("Page", (int)ViewBag.Page)
+        @Html.Hidden("Category", (int)ViewBag.Category)
+        @Html.Hidden("Search", (string)ViewBag.Search)
+        <li class="catalogue_controlls_item"><div class="catalogue_page_info">
+            <button class="catalogue_page_info_overlay" type="submit"></button>
+            Скидки: @Html.CheckBox("DiscountOnly", (bool)ViewBag.DiscountOnly)</div></li>
+    }
+    @if ((int)ViewBag.Page < (int)ViewBag.TotalPages)
+    {
+        using (Html.BeginForm("NextPage", "Home"))
+        {
+            @Html.Hidden("Page", (int)ViewBag.Page)
+            @Html.Hidden("Category", (int)ViewBag.Category)
+            @Html.Hidden("Search", (string)ViewBag.Search)
+            @Html.Hidden("DiscountOnly", (bool)ViewBag.DiscountOnly)
+            <li class="catalogue_controlls_item"><button type="submit" class="catalogue_next_button">Дальше</button></li>
+        }
+    }
+    else
+    {
+        <li class="catalogue_controlls_item"><button class="catalogue_next_button">Дальше</button></li>
+    }
+</ul>
+

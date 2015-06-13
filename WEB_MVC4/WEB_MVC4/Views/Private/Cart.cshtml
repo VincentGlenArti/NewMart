@@ -1,0 +1,25 @@
+﻿@model List<Tuple<WEB_MVC4.Models.Product, int>>
+
+@{
+    ViewBag.Title = "Корзина";
+}
+
+<link href="~/CSS/StyleLogin.css" rel="stylesheet" type="text/css" />
+
+<div class="login-container">
+    <table>
+        <tr>
+            <td>
+                <h2>Корзина</h2>
+                @if (Model.First() == null)
+                {
+                    <h2>Корзина пуста</h2>
+                }
+                else
+                {
+                    //using
+                }
+            </td>
+        </tr>
+    </table>
+</div>

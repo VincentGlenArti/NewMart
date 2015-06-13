@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9a7163ff1f0b4c449309c48fdd923e16" Name="Diagram1" >
+        <EntityTypeShape EntityType="databaseModel.Product" Width="1.5" PointX="7.625" PointY="4.875" />
+        <EntityTypeShape EntityType="databaseModel.Category" Width="1.5" PointX="10.5" PointY="3.75" />
+        <AssociationConnector Association="databaseModel.ProductCategory" />
+        <EntityTypeShape EntityType="databaseModel.Manufacturer" Width="1.5" PointX="8.625" PointY="2.375" />
+        <AssociationConnector Association="databaseModel.ProductManufacturer" />
+        <EntityTypeShape EntityType="databaseModel.Discount" Width="1.5" PointX="6.5" PointY="2.375" />
+        <EntityTypeShape EntityType="databaseModel.Order" Width="1.5" PointX="13.625" PointY="7.25" />
+        <EntityTypeShape EntityType="databaseModel.OrderProducts" Width="1.5" PointX="10.5" PointY="8.5" />
+        <AssociationConnector Association="databaseModel.OrderProductsProduct" ManuallyRouted="true" >
+          <ConnectorPoint PointX="10.5" PointY="9.4901432291666659" />
+          <ConnectorPoint PointX="8.8645858333333347" PointY="9.4901432291666659" />
+          <ConnectorPoint PointX="8.6979191666666669" PointY="9.4901432291666659" />
+          <ConnectorPoint PointX="8.375" PointY="9.4901432291666659" />
+          <ConnectorPoint PointX="8.375" PointY="8.3936979166666656" />
+        </AssociationConnector>
+        <AssociationConnector Association="databaseModel.OrderProductsOrder" />
+        <EntityTypeShape EntityType="databaseModel.Location" Width="1.5" PointX="13.625" PointY="4.75" />
+        <AssociationConnector Association="databaseModel.OrderLocation" />
+        <EntityTypeShape EntityType="databaseModel.Stock" Width="1.5" PointX="10.5" PointY="6.125" />
+        <AssociationConnector Association="databaseModel.StockProduct" />
+        <AssociationConnector Association="databaseModel.StockLocation" />
+        <AssociationConnector Association="databaseModel.CategoryCategory" />
+        <AssociationConnector Association="databaseModel.ProductDiscount" />
+        <EntityTypeShape EntityType="databaseModel.User" Width="1.5" PointX="16.125" PointY="7.375" />
+        <AssociationConnector Association="databaseModel.UserOrder" />
+        <EntityTypeShape EntityType="databaseModel.Cart" Width="1.5" PointX="12.25" PointY="10.625" />
+        <EntityTypeShape EntityType="databaseModel.CartProducts" Width="1.5" PointX="9.375" PointY="11.125" />
+        <AssociationConnector Association="databaseModel.CartProductsCart" />
+        <AssociationConnector Association="databaseModel.UserCart" />
+        <AssociationConnector Association="databaseModel.ProductCartProducts" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
