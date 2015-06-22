@@ -1,0 +1,555 @@
+﻿        html, body, #container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            min-width: 800px;
+            min-height: 600px;
+            margin: 0px; 
+            padding: 0px;
+            background-color: #f3f3f3;
+        }
+
+        textarea[name='placeholdercontact'] { 
+            resize: none; 
+        }
+
+        button[type=submit] {
+            position: absolute;
+            top: 0;
+        }
+
+        a {
+            color: #000;
+            text-decoration: none;
+            font-family: 'Myriad Pro';
+            font-size: 15px;
+        }
+
+        a:hover {
+            color: #fff;
+        }
+
+        .logo {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 200px;
+            height: 100px;
+            background-size: cover;
+            background-image: url(/Images/logo.png)
+        }
+
+        .bar {
+            position: absolute;
+            top: 0px;
+            width: 100%;
+            height: 50px;
+            background-color: #33CEC3;
+            overflow:hidden;
+        }
+
+        .list {
+            position:absolute;
+            top: 200px;
+            width: 100%;
+            overflow:hidden;
+        }
+
+        .user_bar {
+            background-color: transparent;
+            position: absolute;
+            right: 0px;
+            width: 100px;
+            height: 50px;
+        }
+
+        .cart_bar {
+            background-color: transparent;
+            position: absolute;
+            right: 100px;
+            width: 100px;
+            height: 50px;
+        }
+
+        .search {
+            position: absolute;
+            left: 50%;
+            margin-left: -30%;
+            width: 60%;
+            top: 125px;
+            height: 25px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            padding: 0px;
+            list-style: none;
+
+            -ms-box-orient: horizontal;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -moz-flex;
+            display: -webkit-flex;
+            display: flexbox;
+    
+            -webkit-justify-content: space-around;
+            justify-content: space-around;
+            -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;
+            -webkit-align-items: stretch;
+            align-items: stretch;
+        }
+
+        .search_item:nth-of-type(1){ max-width:100px; min-width:100px; display:inline-block; margin:0px; padding:0px;}
+        .search_item:nth-of-type(2){ flex-grow:9; -webkit-flex-grow:9; display:inline-block; margin:0px; padding:0px;}
+        .search_item:nth-of-type(3){ max-width:100px; min-width:100px; display:inline-block; margin:0px; padding:0px;}
+
+        .search_item {
+            left:0px;
+            line-height:25px;
+        }
+
+        .info {
+            position: absolute;
+            right: 2%;
+            width: 325px;
+            top: 75px;
+            height: 25px;
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+
+            -ms-box-orient: horizontal;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -moz-flex;
+            display: -webkit-flex;
+            display: flexbox;
+    
+            -webkit-justify-content: space-around;
+            justify-content: space-around;
+            -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;
+            -webkit-align-items: stretch;
+            align-items: stretch;
+        }
+
+        .info_item:nth-of-type(1){ flex-grow:1; -webkit-flex-grow:1; display:inline-block; margin:0px; padding:0px;}
+        .info_item:nth-of-type(2){ flex-grow:1; -webkit-flex-grow:1; display:inline-block; margin:0px; padding:0px;}
+        .info_item:nth-of-type(3){ flex-grow:1; -webkit-flex-grow:1; display:inline-block; margin:0px; padding:0px;}
+
+        .info_item {
+            left: 0px;
+            line-height: 25px;
+        }
+
+        .item_button{
+            left: 0px;
+            width:100px;
+            height:26px;
+            background-color: #33CEC3;
+            font-family: 'Myriad Pro';
+            font-size: 18px;
+            text-align: center;
+            color: #fff;
+        }
+
+         .item_button_dark{
+            left: 0px;
+            width:100px;
+            height:26px;
+            background-color: #006363;
+            font-family: 'Myriad Pro';
+            font-size: 18px;
+            text-align: center;
+            color: #fff;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .popup {
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            margin: -150px 0 0 -150px;
+            background-color: #fff;
+            border: 5px solid #006363;
+            position: fixed;
+            z-index: 17;
+        }
+
+        .popup_login {
+            top: 150px;
+            right: 0px;
+            width: 200px;
+            height: 175px;
+            margin: -100px 0 0 -50px;
+            background-color: #fff;
+            border: 5px solid #006363;
+            position: fixed;
+            z-index: 17;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 20;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            z-index: 16;
+        }
+
+        .cross {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-image: url(/Images/close_crest.png);
+            top: 0px;
+            right: 0px;
+        }
+
+        .placeholder_search {
+            width:100%;
+            height:22px;
+            left:0px;
+            top:0px;
+            margin:0px;
+            padding:0px;
+            font-family: 'Myriad Pro';
+            font-size: 18px;
+        }
+
+        .menupopup {
+            top:10%;
+            width:300px;
+            right:0px;
+            height:80%;
+            position: fixed;
+            z-index: 20;
+            background-color: #fff;
+            border: 5px solid #006363;
+            border-right-style: hidden;
+            overflow: hidden;
+            overflow-y:scroll;
+        }
+
+        .mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 15;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .login_button {
+            position: absolute;
+            margin-top: 80px;
+            left: 10px;
+            width:160px;
+            height:26px;
+            background-color: #006363;
+            font-family: 'Myriad Pro';
+            font-size: 18px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .registration_button
+        {
+            position: absolute;
+            margin-top: 140px;
+            top: 111px;
+            left: 10px;
+            width:160px;
+            height:26px;
+            background-color: #006363;
+            font-family: 'Myriad Pro';
+            font-size: 18px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .forgot_button
+        {
+            position: absolute;
+            margin-top: 110px;
+            left: 10px;
+            width:160px;
+            height:26px;
+            background-color: #006363;
+            font-family: 'Myriad Pro';
+            font-size: 18px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .banner
+        {
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            top: 200px;
+            left: 50%;
+            margin: 0 0 0 -150px;
+            background-image: url(/Images/Banner.png);
+        }
+
+        .catalogue {
+            position: absolute;
+            left: 50%;
+            width: 70%;
+            margin-left: -35%;
+            top: 400px;
+            height: auto;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            padding: 0px;
+            list-style: none;
+
+            -ms-box-orient: horizontal;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -moz-flex;
+            display: -webkit-flex;
+            display: flexbox;
+    
+            -webkit-justify-content: space-around;
+            justify-content: space-around;
+            -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;
+            -webkit-align-items: stretch;
+            align-items: flex-start;
+        }
+
+        .catalogue_item
+        {
+            left:0px;
+            height:100px;
+            width:100%;
+            background-color: white;
+            padding: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border: 2px solid #006363;
+        }
+
+        .catalogue_item_image
+        {
+            position:relative;
+            left:0px;
+            width:100px;
+            height:100px;
+            background-color: white;
+            background-size: contain;
+            overflow:hidden;
+            background-repeat:no-repeat;
+        }
+
+        .catalogue_item_name
+        {
+            position:relative;
+            bottom: 105px;
+            left:140px;
+            width:250px;
+            height:40px;
+            font-family: 'Myriad Pro';
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            color: #006363;
+        }
+
+        .catalogue_item_price
+        {
+            position:relative;
+            top:-60px;
+            left:110px;
+            width:250px;
+            height:40px;
+            font-family: 'Myriad Pro';
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            color: #006363;
+        }
+
+        .catalogue_item_button
+        {
+            position: relative;
+            right: -175px;
+            bottom: 150px;
+            width:100px;
+            height:26px;
+            background-color: #006363;
+            font-family: 'Myriad Pro';
+            font-size: 18px;
+            text-align: center;
+            color: #fff;
+        }
+
+         .catalogue_item_descr
+        {
+            position:relative;
+            bottom:150px;
+            left:140px;
+            width:45%;
+            height:50%;
+            font-family: 'Myriad Pro';
+            font-size: 16px;
+            text-align: left;
+            color: #000;
+        }
+
+         .catalogue_next_button
+         {
+             position:absolute;
+             right: 0;
+             height:33px;
+             width:100px;
+             background-color: #006363;
+             font-family: 'Myriad Pro';
+             font-size: 18px;
+             text-align: center;
+             color: #fff;
+         }
+
+         .catalogue_prev_button
+         {
+             position:absolute;
+             left: 0;
+             height:33px;
+             width:100px;
+             background-color: #006363;
+             font-family: 'Myriad Pro';
+             font-size: 18px;
+             text-align: center;
+             color: #fff;
+         }
+
+         .catalogue_page_info
+         {
+             top: 0;
+             position:absolute;
+             height:33px;
+             width:100px;
+             background-color: #006363;
+             font-family: 'Myriad Pro';
+             font-size: 18px;
+             text-align: center;
+             color: #fff;
+         }
+
+         .catalogue_page_info_overlay
+         {
+             top: 0;
+             position:absolute;
+             height:33px;
+             width:100px;
+             opacity: 0;
+         }
+
+         .page_border
+         {
+             left:50%;
+             margin-left: -45%;
+             margin-top: 150px;
+             width: 90%;
+             min-height: 80%;
+             position: relative;
+             background-color: white;
+         }
+
+         .catalogue_controlls
+         {
+            position: absolute;
+            width: 60%;
+            left: 50%;
+            top: 360px;
+            height: 33px;
+            margin-left: -30%;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            padding: 0px;
+            list-style: none;
+            flex: 4;
+
+            -ms-box-orient: horizontal;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -moz-flex;
+            display: -webkit-flex;
+            display: flexbox;
+    
+            -webkit-justify-content: space-around;
+            justify-content: space-around;
+            -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;
+            -webkit-align-items: stretch;
+            align-items: flex-start;
+         }
+
+        .catalogue_controlls_item:nth-of-type(1){ max-width:100px; min-width:100px; display:inline-block; margin:0px; padding:0px;}
+        .catalogue_controlls_item:nth-of-type(2){ max-width:100px; min-width:100px; display:inline-block; margin:0px; padding:0px;}
+        .catalogue_controlls_item:nth-of-type(3){ max-width:100px; min-width:100px; display:inline-block; margin:0px; padding:0px;}
+        .catalogue_controlls_item:nth-of-type(4){ max-width:100px; min-width:100px; display:inline-block; margin:0px; padding:0px;}
+
+        .catalogue_controlls_item {
+            left:0px;
+            line-height:33px;
+        }
+
+        .p_cat_style {
+            height: 20px;
+            width: 300px;
+            background-color: #33CEC3;
+            text-align: center;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .p_please_login{
+            position: absolute;
+            left: 20px;
+            width: 150px;
+            font-family: 'Myriad Pro';
+            font-size: 18px;
+            text-align: center;
+            color: #000;
+        }
+
+        .orders_button {
+            position: absolute;
+            margin-top: 115px;
+            left: 10px;
+            width:160px;
+            height:26px;
+            background-color: #006363;
+            font-family: 'Myriad Pro';
+            font-size: 18px;
+            text-align: center;
+            color: #fff;
+        }

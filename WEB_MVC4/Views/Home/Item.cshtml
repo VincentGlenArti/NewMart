@@ -1,0 +1,26 @@
+﻿@model WEB_MVC4.Models.Product
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<link href="~/CSS/StyleItem.css" rel="stylesheet" type="text/css" />
+
+<div class="login-container">
+    <table>
+        <tr>
+            <td>
+                <h2>@Model.Manufacturer.Name @Model.Name</h2>
+                <div class="product_item_image" style="background-image:url(@Model.Picture);"></div>
+                <p class="product_text">@Model.Info</p>
+                <p class="product_text">Стоимость: @Model.Price$</p>
+                @using (Html.BeginForm("AddToCart", "Private", new { @class = "none" }))
+                {
+                    @Html.Hidden("ProductID", (int)Model.ID);
+                    <input type="number" max="99" min="1" value="1" class="product_text" name="Ammount"/>
+                    <input type="submit" value="Купить" />
+                }
+            </td>
+        </tr>
+    </table>
+</div>

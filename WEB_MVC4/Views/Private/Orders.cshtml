@@ -1,0 +1,34 @@
+﻿@model List<WEB_MVC4.Models.Order>
+
+@{
+    ViewBag.Title = "Покупка завершена!";
+}
+
+<link href="~/CSS/StyleLogin.css" rel="stylesheet" type="text/css" />
+
+<div>
+    <table>
+        <tr>
+            <td>
+               @if(Model.Count == 0)
+               {
+                   <h2>У вас пока что нет заказов!</h2>
+               }
+               else
+               {
+                   foreach(var item in Model)
+                   {
+                       using(Html.BeginForm("OrderDetails", "Private", new {@class = "none"}))
+                       {
+                           <p>
+                                Заказ номер @item.ID  |
+                                @Html.Hidden("ID", item.ID)
+                                <input type="submit" value="Подробнее" />
+                           </p>
+                       }
+                   }
+               }
+            </td>
+        </tr>
+    </table>
+</div>

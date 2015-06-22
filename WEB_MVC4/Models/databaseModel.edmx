@@ -1,0 +1,769 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="databaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="databaseModelStoreContainer">
+    <EntitySet Name="ProductSet" EntityType="databaseModel.Store.ProductSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategorySet" EntityType="databaseModel.Store.CategorySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ManufacturerSet" EntityType="databaseModel.Store.ManufacturerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DiscountSet" EntityType="databaseModel.Store.DiscountSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderSet" EntityType="databaseModel.Store.OrderSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderProductsSet" EntityType="databaseModel.Store.OrderProductsSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocationSet" EntityType="databaseModel.Store.LocationSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StockSet" EntityType="databaseModel.Store.StockSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserSet" EntityType="databaseModel.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CartSet" EntityType="databaseModel.Store.CartSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ProductCategory" Association="databaseModel.Store.ProductCategory">
+      <End Role="Product" EntitySet="ProductSet" />
+      <End Role="Category" EntitySet="CategorySet" />
+    </AssociationSet>
+    <AssociationSet Name="ProductManufacturer" Association="databaseModel.Store.ProductManufacturer">
+      <End Role="Product" EntitySet="ProductSet" />
+      <End Role="Manufacturer" EntitySet="ManufacturerSet" />
+    </AssociationSet>
+    <AssociationSet Name="OrderProductsProduct" Association="databaseModel.Store.OrderProductsProduct">
+      <End Role="OrderProducts" EntitySet="OrderProductsSet" />
+      <End Role="Product" EntitySet="ProductSet" />
+    </AssociationSet>
+    <AssociationSet Name="OrderProductsOrder" Association="databaseModel.Store.OrderProductsOrder">
+      <End Role="OrderProducts" EntitySet="OrderProductsSet" />
+      <End Role="Order" EntitySet="OrderSet" />
+    </AssociationSet>
+    <AssociationSet Name="OrderLocation" Association="databaseModel.Store.OrderLocation">
+      <End Role="Order" EntitySet="OrderSet" />
+      <End Role="Location" EntitySet="LocationSet" />
+    </AssociationSet>
+    <AssociationSet Name="StockProduct" Association="databaseModel.Store.StockProduct">
+      <End Role="Stock" EntitySet="StockSet" />
+      <End Role="Product" EntitySet="ProductSet" />
+    </AssociationSet>
+    <AssociationSet Name="StockLocation" Association="databaseModel.Store.StockLocation">
+      <End Role="Stock" EntitySet="StockSet" />
+      <End Role="Location" EntitySet="LocationSet" />
+    </AssociationSet>
+    <AssociationSet Name="CategoryCategory" Association="databaseModel.Store.CategoryCategory">
+      <End Role="Category" EntitySet="CategorySet" />
+      <End Role="Category1" EntitySet="CategorySet" />
+    </AssociationSet>
+    <AssociationSet Name="ProductDiscount" Association="databaseModel.Store.ProductDiscount">
+      <End Role="Product" EntitySet="ProductSet" />
+      <End Role="Discount" EntitySet="DiscountSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserOrder" Association="databaseModel.Store.UserOrder">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Order" EntitySet="OrderSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserCart" Association="databaseModel.Store.UserCart">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Cart" EntitySet="CartSet" />
+    </AssociationSet>
+    <AssociationSet Name="CartProduct" Association="databaseModel.Store.CartProduct">
+      <End Role="Cart" EntitySet="CartSet" />
+      <End Role="Product" EntitySet="ProductSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ProductSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Info" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CategoryID" Type="smallint" Nullable="false" />
+    <Property Name="ManufacturerID" Type="smallint" Nullable="false" />
+    <Property Name="Picture" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategorySet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CategoryID" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ManufacturerSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DiscountSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiscountUnit" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DiscountVal" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cost" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubmitTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ArrivalTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DoneTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationID" Type="smallint" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderProductsSet">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="Ammount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="OrderID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StockSet">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="Ammount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="LocationID" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CartSet">
+    <Key>
+      <PropertyRef Name="UserUserId" />
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="UserUserId" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="Ammount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UpdateDate" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="ProductCategory">
+    <End Role="Product" Type="databaseModel.Store.ProductSet" Multiplicity="*" />
+    <End Role="Category" Type="databaseModel.Store.CategorySet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductManufacturer">
+    <End Role="Product" Type="databaseModel.Store.ProductSet" Multiplicity="*" />
+    <End Role="Manufacturer" Type="databaseModel.Store.ManufacturerSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ManufacturerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderProductsProduct">
+    <End Role="OrderProducts" Type="databaseModel.Store.OrderProductsSet" Multiplicity="*" />
+    <End Role="Product" Type="databaseModel.Store.ProductSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderProducts">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderProductsOrder">
+    <End Role="OrderProducts" Type="databaseModel.Store.OrderProductsSet" Multiplicity="*" />
+    <End Role="Order" Type="databaseModel.Store.OrderSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderProducts">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderLocation">
+    <End Role="Order" Type="databaseModel.Store.OrderSet" Multiplicity="*" />
+    <End Role="Location" Type="databaseModel.Store.LocationSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StockProduct">
+    <End Role="Stock" Type="databaseModel.Store.StockSet" Multiplicity="*" />
+    <End Role="Product" Type="databaseModel.Store.ProductSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StockLocation">
+    <End Role="Stock" Type="databaseModel.Store.StockSet" Multiplicity="*" />
+    <End Role="Location" Type="databaseModel.Store.LocationSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoryCategory">
+    <End Role="Category" Type="databaseModel.Store.CategorySet" Multiplicity="*" />
+    <End Role="Category1" Type="databaseModel.Store.CategorySet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Category1">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductDiscount">
+    <End Role="Product" Type="databaseModel.Store.ProductSet" Multiplicity="1" />
+    <End Role="Discount" Type="databaseModel.Store.DiscountSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Discount">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserOrder">
+    <End Role="User" Type="databaseModel.Store.UserSet" Multiplicity="1" />
+    <End Role="Order" Type="databaseModel.Store.OrderSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserCart">
+    <End Role="User" Type="databaseModel.Store.UserSet" Multiplicity="1" />
+    <End Role="Cart" Type="databaseModel.Store.CartSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="UserUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CartProduct">
+    <End Role="Cart" Type="databaseModel.Store.CartSet" Multiplicity="*" />
+    <End Role="Product" Type="databaseModel.Store.ProductSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="databaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="databaseModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ProductSet" EntityType="databaseModel.Product" />
+          <EntitySet Name="CategorySet" EntityType="databaseModel.Category" />
+          <AssociationSet Name="ProductCategory" Association="databaseModel.ProductCategory">
+            <End Role="Product" EntitySet="ProductSet" />
+            <End Role="Category" EntitySet="CategorySet" />
+          </AssociationSet>
+          <EntitySet Name="ManufacturerSet" EntityType="databaseModel.Manufacturer" />
+          <AssociationSet Name="ProductManufacturer" Association="databaseModel.ProductManufacturer">
+            <End Role="Product" EntitySet="ProductSet" />
+            <End Role="Manufacturer" EntitySet="ManufacturerSet" />
+          </AssociationSet>
+          <EntitySet Name="DiscountSet" EntityType="databaseModel.Discount" />
+          <EntitySet Name="OrderSet" EntityType="databaseModel.Order" />
+          <EntitySet Name="OrderProductsSet" EntityType="databaseModel.OrderProducts" />
+          <AssociationSet Name="OrderProductsProduct" Association="databaseModel.OrderProductsProduct">
+            <End Role="OrderProducts" EntitySet="OrderProductsSet" />
+            <End Role="Product" EntitySet="ProductSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrderProductsOrder" Association="databaseModel.OrderProductsOrder">
+            <End Role="OrderProducts" EntitySet="OrderProductsSet" />
+            <End Role="Order" EntitySet="OrderSet" />
+          </AssociationSet>
+          <EntitySet Name="LocationSet" EntityType="databaseModel.Location" />
+          <AssociationSet Name="OrderLocation" Association="databaseModel.OrderLocation">
+            <End Role="Order" EntitySet="OrderSet" />
+            <End Role="Location" EntitySet="LocationSet" />
+          </AssociationSet>
+          <EntitySet Name="StockSet" EntityType="databaseModel.Stock" />
+          <AssociationSet Name="StockProduct" Association="databaseModel.StockProduct">
+            <End Role="Stock" EntitySet="StockSet" />
+            <End Role="Product" EntitySet="ProductSet" />
+          </AssociationSet>
+          <AssociationSet Name="StockLocation" Association="databaseModel.StockLocation">
+            <End Role="Stock" EntitySet="StockSet" />
+            <End Role="Location" EntitySet="LocationSet" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryCategory" Association="databaseModel.CategoryCategory">
+            <End Role="Category" EntitySet="CategorySet" />
+            <End Role="Category1" EntitySet="CategorySet" />
+          </AssociationSet>
+          <AssociationSet Name="ProductDiscount" Association="databaseModel.ProductDiscount">
+            <End Role="Product" EntitySet="ProductSet" />
+            <End Role="Discount" EntitySet="DiscountSet" />
+          </AssociationSet>
+          <EntitySet Name="UserSet" EntityType="databaseModel.User" />
+          <AssociationSet Name="UserOrder" Association="databaseModel.UserOrder">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Order" EntitySet="OrderSet" />
+          </AssociationSet>
+          <EntitySet Name="CartSet" EntityType="databaseModel.Cart" />
+          <AssociationSet Name="UserCart" Association="databaseModel.UserCart">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Cart" EntitySet="CartSet" />
+          </AssociationSet>
+          <AssociationSet Name="CartProduct" Association="databaseModel.CartProduct">
+            <End Role="Cart" EntitySet="CartSet" />
+            <End Role="Product" EntitySet="ProductSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Info" Type="String" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="databaseModel.ProductCategory" FromRole="Product" ToRole="Category" />
+          <Property Name="CategoryID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Manufacturer" Relationship="databaseModel.ProductManufacturer" FromRole="Product" ToRole="Manufacturer" />
+          <Property Name="ManufacturerID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Stock" Relationship="databaseModel.StockProduct" FromRole="Product" ToRole="Stock" />
+          <NavigationProperty Name="OrderProducts" Relationship="databaseModel.OrderProductsProduct" FromRole="Product" ToRole="OrderProducts" />
+          <Property Name="Picture" Type="String" Nullable="false" />
+          <NavigationProperty Name="Discount" Relationship="databaseModel.ProductDiscount" FromRole="Product" ToRole="Discount" />
+          <NavigationProperty Name="Cart" Relationship="databaseModel.CartProduct" FromRole="Product" ToRole="Cart" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="CategoryParent" Relationship="databaseModel.CategoryCategory" FromRole="Category" ToRole="Category1" />
+          <Property Name="CategoryID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="databaseModel.ProductCategory" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <Association Name="ProductCategory">
+          <End Type="databaseModel.Product" Role="Product" Multiplicity="*" />
+          <End Type="databaseModel.Category" Role="Category" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="databaseModel.ProductManufacturer" FromRole="Manufacturer" ToRole="Product" />
+        </EntityType>
+        <Association Name="ProductManufacturer">
+          <End Type="databaseModel.Product" Role="Product" Multiplicity="*" />
+          <End Type="databaseModel.Manufacturer" Role="Manufacturer" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ManufacturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountUnit" Type="String" Nullable="false" />
+          <Property Name="DiscountVal" Type="String" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="databaseModel.ProductDiscount" FromRole="Discount" ToRole="Product" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cost" Type="String" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" />
+          <Property Name="SubmitTime" Type="String" Nullable="false" />
+          <Property Name="ArrivalTime" Type="String" Nullable="false" />
+          <Property Name="DoneTime" Type="String" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="databaseModel.OrderLocation" FromRole="Order" ToRole="Location" />
+          <Property Name="LocationID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="OrderProducts" Relationship="databaseModel.OrderProductsOrder" FromRole="Order" ToRole="OrderProducts" />
+          <NavigationProperty Name="User" Relationship="databaseModel.UserOrder" FromRole="Order" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderProducts" >
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="Ammount" Type="String" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="databaseModel.OrderProductsProduct" FromRole="OrderProducts" ToRole="Product" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="databaseModel.OrderProductsOrder" FromRole="OrderProducts" ToRole="Order" />
+          <Property Name="OrderID" Type="Int64" Nullable="false" />
+        </EntityType>
+        <Association Name="OrderProductsProduct">
+          <End Type="databaseModel.OrderProducts" Role="OrderProducts" Multiplicity="*" />
+          <End Type="databaseModel.Product" Role="Product" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderProducts">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderProductsOrder">
+          <End Type="databaseModel.OrderProducts" Role="OrderProducts" Multiplicity="*" />
+          <End Type="databaseModel.Order" Role="Order" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderProducts">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <NavigationProperty Name="Stock" Relationship="databaseModel.StockLocation" FromRole="Location" ToRole="Stock" />
+          <NavigationProperty Name="Order" Relationship="databaseModel.OrderLocation" FromRole="Location" ToRole="Order" />
+        </EntityType>
+        <Association Name="OrderLocation">
+          <End Type="databaseModel.Order" Role="Order" Multiplicity="*" />
+          <End Type="databaseModel.Location" Role="Location" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Stock" >
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="Ammount" Type="String" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="databaseModel.StockProduct" FromRole="Stock" ToRole="Product" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="databaseModel.StockLocation" FromRole="Stock" ToRole="Location" />
+          <Property Name="LocationID" Type="Int16" Nullable="false" />
+        </EntityType>
+        <Association Name="StockProduct">
+          <End Type="databaseModel.Stock" Role="Stock" Multiplicity="*" />
+          <End Type="databaseModel.Product" Role="Product" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StockLocation">
+          <End Type="databaseModel.Stock" Role="Stock" Multiplicity="*" />
+          <End Type="databaseModel.Location" Role="Location" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategoryCategory">
+          <End Type="databaseModel.Category" Role="Category" Multiplicity="*" />
+          <End Type="databaseModel.Category" Role="Category1" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Category1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductDiscount">
+          <End Type="databaseModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="databaseModel.Discount" Role="Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Discount">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="databaseModel.UserOrder" FromRole="User" ToRole="Order" />
+          <NavigationProperty Name="Cart" Relationship="databaseModel.UserCart" FromRole="User" ToRole="Cart" />
+        </EntityType>
+        <Association Name="UserOrder">
+          <End Type="databaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="databaseModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cart" >
+          <Key>
+            <PropertyRef Name="UserUserId" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <NavigationProperty Name="User" Relationship="databaseModel.UserCart" FromRole="Cart" ToRole="User" />
+          <Property Name="UserUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="databaseModel.CartProduct" FromRole="Cart" ToRole="Product" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Ammount" Type="String" Nullable="false" />
+          <Property Name="UpdateDate" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="UserCart">
+          <End Type="databaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="databaseModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="UserUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CartProduct">
+          <End Type="databaseModel.Cart" Role="Cart" Multiplicity="*" />
+          <End Type="databaseModel.Product" Role="Product" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="databaseModelStoreContainer" CdmEntityContainer="databaseModelContainer">
+    <EntitySetMapping Name="ProductSet">
+      <EntityTypeMapping TypeName="IsTypeOf(databaseModel.Product)">
+        <MappingFragment StoreEntitySet="ProductSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Info" ColumnName="Info" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategorySet">
+      <EntityTypeMapping TypeName="IsTypeOf(databaseModel.Category)">
+        <MappingFragment StoreEntitySet="CategorySet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ManufacturerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(databaseModel.Manufacturer)">
+        <MappingFragment StoreEntitySet="ManufacturerSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiscountSet">
+      <EntityTypeMapping TypeName="IsTypeOf(databaseModel.Discount)">
+        <MappingFragment StoreEntitySet="DiscountSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DiscountUnit" ColumnName="DiscountUnit" />
+          <ScalarProperty Name="DiscountVal" ColumnName="DiscountVal" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderSet">
+      <EntityTypeMapping TypeName="IsTypeOf(databaseModel.Order)">
+        <MappingFragment StoreEntitySet="OrderSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SubmitTime" ColumnName="SubmitTime" />
+          <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+          <ScalarProperty Name="DoneTime" ColumnName="DoneTime" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderProductsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(databaseModel.OrderProducts)">
+        <MappingFragment StoreEntitySet="OrderProductsSet">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="Ammount" ColumnName="Ammount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(databaseModel.Location)">
+        <MappingFragment StoreEntitySet="LocationSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockSet">
+      <EntityTypeMapping TypeName="IsTypeOf(databaseModel.Stock)">
+        <MappingFragment StoreEntitySet="StockSet">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="Ammount" ColumnName="Ammount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(databaseModel.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CartSet">
+      <EntityTypeMapping TypeName="IsTypeOf(databaseModel.Cart)">
+        <MappingFragment StoreEntitySet="CartSet">
+          <ScalarProperty Name="UserUserId" ColumnName="UserUserId" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Ammount" ColumnName="Ammount" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

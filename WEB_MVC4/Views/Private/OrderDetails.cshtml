@@ -1,0 +1,37 @@
+﻿@model WEB_MVC4.Models.Order
+
+@{
+    ViewBag.Title = "Покупка завершена!";
+}
+
+<link href="~/CSS/StyleLogin.css" rel="stylesheet" type="text/css" />
+
+<div>
+    <table>
+        <tr>
+            <td>
+               <h2>Ваша покупка завершена! Пожалуйста, запомните информацию о Вашем заказе.
+                На случай, если вы её забудете, вы всегда сможете посмотреть её в Вашем списке заказов.</h2>
+                <p>Номер: @Model.ID</p>
+                <p>Откуда забрать: @Model.Location.Address</p>
+                <p>Время отправки в систему: @Model.SubmitTime</p>
+                @if(!Model.ArrivalTime.Equals("None"))
+                {
+                <p>Время получения в аутпосте: @Model.SubmitTime</p>
+                }
+                else
+                {
+                <p>Время получения в аутпосте: Ещё не получен</p>
+                }
+                @if (!Model.ArrivalTime.Equals("None"))
+                {
+                    <p>Время получения заказчиком: @Model.DoneTime</p>
+                }
+                else
+                {
+                    <p>Время получения заказчиком: Ещё не получен</p>
+                }
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,96 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; CHARSET=UTF-8">
+    <meta content="электроника, магазин, купить, онлайн, shop, mart, компьютеры, собрать" name="keywords">
+    <meta content="NewMart - доступный и дешёвый компьютерный интернет магазин" name="description">
+    <meta content="index,all" name="robots">
+    <title>@ViewBag.Title</title>
+    <link href="~/CSS/StyleMain.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="~/Images/favicon.ico">
+    <script src="~/Scripts/jquery-1.8.0.min.js"></script>
+    <script src="~/Scripts/popup.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+<body onresize="ResizePage()" onload="ResizePage()">
+    <div class="bar">
+        <button class="user_bar" onclick="javascript: PopUpShow_Mask(loginpopup)">
+            <img id="userimg" src="~/Images/user_bar.png" alt="logo" onmouseover="this.src='/Images/user_bar_pressed.png'" onmouseout="this.src='/Images/user_bar.png';" />
+        </button>
+        @using (Html.BeginForm("Cart", "Private")) 
+        {
+        <button class="cart_bar" type="submit">
+            <img id="cartimg" src="~/Images/cart_bar.png" alt="logo" onmouseover="this.src='/Images/cart_bar_pressed.png'" onmouseout="this.src='/Images/cart_bar.png';" />
+        </button>
+        }
+    </div>
+    <div class="mask" id="popup_mask">
+            <div class="popup_login" id="loginpopup">
+                @if(ViewBag.User == null)
+                {
+                    <div class="cross" onclick="javascript: PopUpHide_Mask()"></div>
+                    <p class="p_please_login">Пожалуйста, войдите в систему.</p>
+                    using(Html.BeginForm("Login", "Private"))
+                    {
+                        <button class="login_button" type="submit">Вход</button>
+                    }
+                    using(Html.BeginForm("Registration", "Private"))
+                    {
+                        <button class="registration_button" type="submit">Регистрация</button>
+                    }
+                    using(Html.BeginForm("Recovery", "Private"))
+                    {
+                        <button class="forgot_button" onclick="PopUpRecover()">Забыли пароль?</button>
+                    }
+                }
+                else
+                {
+                    <div class="cross" onclick="javascript: PopUpHide_Mask()"></div>
+                    <p class="p_please_login">Вы вошли как: @ViewBag.User.Login</p>
+                    using (Html.BeginForm("Logout", "Private"))
+                    {
+                        <button class="login_button" type="submit">Выход</button>
+                    }
+                    using (Html.BeginForm("Orders", "Private"))
+                    {
+                        <button class="orders_button" type="submit">Мои заказы</button>
+                    }
+                }
+            </div>
+        <div class="popup" id="aboutpopup">Тут о нас<div class="cross" onclick="javascript: PopUpHide_Mask()"></div></div>
+        <div class="popup" id="callpopup">Тут телефоны и емейлы<div class="cross" onclick="javascript: PopUpHide_Mask()"></div></div>
+        <div class="popup" id="helppopup">Тут помощь юзеру<div class="cross" onclick="javascript: PopUpHide_Mask()"></div></div>
+        @if(ViewBag.CategorySelect != null)
+        {
+            <div class="menupopup" id="menupopup">
+                @foreach(WEB_MVC4.Models.Category Entry in ViewBag.CategorySelect)
+                {
+                    <p class="p_cat_style"><a class="a_cat_style" href="@Url.Action("Index", "Home", new {Page = 1, Category = Entry.ID, Search = "", DiscountOnly = false })">@Entry.Name</a></p>
+                }
+            <div class="cross" onclick="javascript: PopUpHide_Mask()"></div></div>
+        }
+        else
+        {
+            <div class="menupopup" id="menupopup">Тут категории поиска<div class="cross" onclick="javascript: PopUpHide_Mask()"></div></div>
+        }
+        <div class="overlay" onclick="javascript: PopUpHide_Mask()"></div>
+    </div>
+    <form action="JavaScript:void(0)">
+        <a href="@Url.Action("Index", "Home")">
+            <div class="logo"></div>
+        </a>
+    </form>
+    <ul class="info">
+        <li class="info_item"><button class="item_button" onclick="PopUpShow_Mask(helppopup)">Помощь</button></li>
+        <li class="info_item"><button class="item_button" onclick="PopUpShow_Mask(callpopup)">Связаться</button></li>
+        <li class="info_item"><button class="item_button" onclick="PopUpShow_Mask(aboutpopup)">О Нас</button></li>
+    </ul>
+    <div class="page_border" id="page_border">
+            @RenderBody()
+    </div>
+</body>
+</html>
+

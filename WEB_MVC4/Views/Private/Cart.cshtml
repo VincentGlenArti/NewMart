@@ -1,0 +1,40 @@
+﻿@model List<Tuple<WEB_MVC4.Models.Product, int>>
+
+@{
+    ViewBag.Title = "Корзина";
+}
+
+<link href="~/CSS/StyleLogin.css" rel="stylesheet" type="text/css" />
+
+<div>
+    <table>
+        <tr>
+            <td>
+                @if (Model == null || Model.Count == 0)
+                {
+                    <h2>Ваша корзина пуста</h2>
+                    <h2>Быстрее заполните её!</h2>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        using (Html.BeginForm("RemoveFromCart", "Private", new { @class = "none" }))
+                        {
+                            <p>
+                                @Html.Hidden("ProductID", item.Item1.ID)
+                                @Html.Hidden("Ammount", item.Item2)
+                                @item.Item1.Name | @item.Item2 единиц | @item.Item1.Price$
+                                <input type="submit" value="Убрать" />
+                            </p>
+                        }
+                    }
+                    using (Html.BeginForm("Buy", "Private", new { @class = "none" }))
+                    {
+                        <input type="submit" value="Оформить заказ" />
+                    }
+                }
+            </td>
+        </tr>
+    </table>
+</div>
